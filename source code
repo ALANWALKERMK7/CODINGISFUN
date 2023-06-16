@@ -1,1 +1,65 @@
+import requests
+
+# OpenWeatherMap API endpoint and API key
+API_ENDPOINT = "http://api.openweathermap.org/data/2.5/weather"
+API_KEY = "38b1f88f6c98aa37f5e67d43109d94cd" #insert your API Key here
+
+def get_weather(location):
+    # Make a GET request to the OpenWeatherMap API
+    params = {
+        "q": location,
+        "appid": API_KEY,
+        "units": "metric"
+    }
+    response = requests.get(API_ENDPOINT, params=params)
+    
+    # Check if the request was successful
+    if response.status_code == 200:
+        weather_data = response.json()
+        return weather_data
+    else:
+        return None
+
+def parse_weather_data(weather_data):
+    # Extract relevant weather information from the API response
+    temperature = weather_data["main"]["temp"]
+    humidity = weather_data["main"]["humidity"]
+    wind_speed = weather_data["wind"]["speed"]
+    weather_conditions = weather_data["weather"][0]["description"]
+    
+    return temperature, humidity, wind_speed, weather_conditions
+
+def format_weather_response(location, temperature, humidity, wind_speed, weather_conditions):
+    # Format the weather information into a user-friendly response
+    response = f"Weather information for {location}:"
+    response += f"\nTemperature: {temperature}°C"
+    response += f"\nHumidity: {humidity}%"
+    response += f"\nWind Speed: {wind_speed} m/s"
+    response += f"\nWeather Conditions: {weather_conditions}"
+    
+    return response
+
+def chatbot():
+    print("Welcome to the Weather Information Chatbot!")
+    print("You can ask for the weather by typing a location.")
+    print("To exit, simply type 'exit'.\n")
+    
+    while True:
+        user_input = input("Please enter a location: ")
+        
+        if user_input.lower() == "exit":
+            print("Goodbye!")
+            break
+        
+        weather_data = get_weather(user_input)
+        
+        if weather_data is not None:
+            temperature, humidity, wind_speed, weather_conditions = parse_weather_data(weather_data)
+            response = format_weather_response(user_input, temperature, humidity, wind_speed, weather_conditions)
+            print(response)
+        else:
+            print("Sorry, weather information for that location is unavailable. Please try again.\n")
+
+# Start the chatbot
+chatbot()
 

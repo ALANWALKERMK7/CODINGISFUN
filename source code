@@ -62,4 +62,34 @@ def chatbot():
 
 # Start the chatbot
 chatbot()
+# sample outputs after executing the code
+Welcome to the Weather Information Chatbot!
+You can ask for the weather by typing a location.
+To exit, simply type 'exit'.
 
+Please enter a location: Wales
+Weather information for Wales:
+Temperature: 12.96°C
+Humidity: 90%
+Wind Speed: 0.8 m/s
+Weather Conditions: overcast clouds
+Please enter a location: Texas
+Weather information for Texas:
+Temperature: 29.04°C
+Humidity: 70%
+Wind Speed: 4.63 m/s
+Weather Conditions: few clouds
+Please enter a location: chennai
+Weather information for chennai:
+Temperature: 34.98°C
+Humidity: 59%
+Wind Speed: 7.2 m/s
+Weather Conditions: few clouds
+Please enter a location: Eluru
+Weather information for Eluru:
+Temperature: 38.05°C
+Humidity: 26%
+Wind Speed: 5.98 m/s
+Weather Conditions: overcast clouds
+Please enter a location: exit
+Goodbye!
